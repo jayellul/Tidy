@@ -1,0 +1,6 @@
+framework module Pods_Chores {
+  umbrella header "Pods-Chores-umbrella.h"
+
+  export *
+  module * { export * }
+}
