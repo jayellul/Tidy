@@ -9,30 +9,37 @@
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
-        <!--Tile View Controller-->
+        <!--Launch View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="TileViewController" customModule="Chores" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="LaunchViewController" customModule="Chores" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="8bC-Xf-vdC">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
+                    <connections>
+                        <segue destination="jRM-o3-ojW" kind="show" identifier="segueToName" id="eld-dY-ggQ"/>
+                        <segue destination="QJJ-Lk-Eev" kind="show" identifier="segueToTile" id="NQV-0P-Ono"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="dkx-z0-nzr" sceneMemberID="firstResponder"/>
             </objects>
         </scene>
-        <!--View Controller-->
+        <!--Name View Controller-->
         <scene sceneID="4Eh-70-K4X">
             <objects>
-                <viewController id="jRM-o3-ojW" customClass="ViewController" customModule="Chores" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="jRM-o3-ojW" customClass="NameViewController" customModule="Chores" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" contentMode="scaleToFill" id="YaB-DQ-oLl">
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="tJL-aP-3ts"/>
                     </view>
+                    <connections>
+                        <segue destination="QJJ-Lk-Eev" kind="show" identifier="segueToTileFromName" id="FOO-CB-3l5"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="lVU-Pk-En4" sceneMemberID="firstResponder"/>
             </objects>
@@ -48,10 +55,59 @@
                         <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                         <viewLayoutGuide key="safeArea" id="Uix-ei-Pzw"/>
                     </view>
+                    <tabBarItem key="tabBarItem" title="" image="deletet.png" selectedImage="deletet.png" id="G7S-uO-817">
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="PNw-0u-tWG" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="2518" y="27"/>
+            <point key="canvasLocation" x="670" y="1502"/>
+        </scene>
+        <!--Custom Tab Bar Controller View Controller-->
+        <scene sceneID="aIp-G0-NIr">
+            <objects>
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="QJJ-Lk-Eev" customClass="CustomTabBarControllerViewController" customModule="Chores" customModuleProvider="target" sceneMemberID="viewController">
+                    <toolbarItems/>
+                    <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
+                    <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="MmR-xp-W3l">
+                        <rect key="frame" x="0.0" y="0.0" width="0.0" height="49"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                        <color key="tintColor" red="0.59999999999999998" green="0.59999999999999998" blue="0.59999999999999998" alpha="1" colorSpace="calibratedRGB"/>
+                        <color key="selectedImageTintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                    </tabBar>
+                    <connections>
+                        <segue destination="6j2-Aa-txH" kind="relationship" relationship="viewControllers" id="LBg-SU-BNQ"/>
+                        <segue destination="IZX-va-US0" kind="relationship" relationship="viewControllers" id="iuO-zo-swh"/>
+                    </connections>
+                </tabBarController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="hmf-pj-G81" userLabel="First Responder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="670" y="802"/>
+        </scene>
+        <!--History View Controller-->
+        <scene sceneID="7gU-7x-rIV">
+            <objects>
+                <viewController id="IZX-va-US0" customClass="HistoryViewController" customModule="Chores" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="FnA-VB-nVX">
+                        <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <color key="backgroundColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                        <viewLayoutGuide key="safeArea" id="Nog-wG-lVj"/>
+                    </view>
+                    <tabBarItem key="tabBarItem" title="" image="history.png" selectedImage="history.png" id="RP2-UD-ywM">
+                        <inset key="imageInsets" minX="0.0" minY="6" maxX="0.0" maxY="-6"/>
+                    </tabBarItem>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="8lO-Y7-baQ" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="1486" y="1502"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="deletet.png" width="25" height="25"/>
+        <image name="history.png" width="25" height="25"/>
+    </resources>
+    <inferredMetricsTieBreakers>
+        <segue reference="FOO-CB-3l5"/>
+    </inferredMetricsTieBreakers>
 </document>

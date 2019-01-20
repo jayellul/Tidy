@@ -128,7 +128,7 @@ class TileView: UIView {
             }) { (completed) in
                 
             }
-            UIView.animate(withDuration: 0.5, delay: 0, options: .curveEaseOut, animations: {
+            UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {
                 self.loadingBarWidthConstraint.constant = self.bounds.width
                 self.layoutIfNeeded()
             })
@@ -158,7 +158,7 @@ class TileView: UIView {
         counter += 0.1
         
         // trigger event
-        if counter > 0.5 {
+        if counter > 0.4 {
             timer?.invalidate()
             // enable and disable
             loadingBarWidthConstraint.constant = 0

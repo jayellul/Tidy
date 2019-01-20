@@ -10,7 +10,7 @@
 		19780A310FA48EB55FFBB4CB /* Pods_ChoresUITests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 86F4E44C11D4175589780A97 /* Pods_ChoresUITests.framework */; };
 		2A6FD5FF1363D9D086318C63 /* Pods_Chores.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 3F7689147224724F212A210C /* Pods_Chores.framework */; };
 		71210EA721F296730010503B /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71210EA621F296730010503B /* AppDelegate.swift */; };
-		71210EA921F296730010503B /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71210EA821F296730010503B /* ViewController.swift */; };
+		71210EA921F296730010503B /* NameViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71210EA821F296730010503B /* NameViewController.swift */; };
 		71210EAC21F296730010503B /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 71210EAA21F296730010503B /* Main.storyboard */; };
 		71210EAF21F296730010503B /* Chores.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 71210EAD21F296730010503B /* Chores.xcdatamodeld */; };
 		71210EB121F296790010503B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 71210EB021F296790010503B /* Assets.xcassets */; };
@@ -27,6 +27,15 @@
 		71210EEC21F3B62B0010503B /* Raleway-Bold.ttf in Resources */ = {isa = PBXBuildFile; fileRef = 71210EEB21F3B62B0010503B /* Raleway-Bold.ttf */; };
 		71210EEE21F3C2530010503B /* check.png in Resources */ = {isa = PBXBuildFile; fileRef = 71210EED21F3C2530010503B /* check.png */; };
 		71210EF021F3D62C0010503B /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 71210EEF21F3D62B0010503B /* GoogleService-Info.plist */; };
+		71210EF421F3E3150010503B /* deletet@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 71210EF121F3E3150010503B /* deletet@2x.png */; };
+		71210EF521F3E3150010503B /* deletet@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 71210EF221F3E3150010503B /* deletet@1x.png */; };
+		71210EF621F3E3150010503B /* deletet@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 71210EF321F3E3150010503B /* deletet@3x.png */; };
+		71210EFB21F3E4AB0010503B /* history.png in Resources */ = {isa = PBXBuildFile; fileRef = 71210EF721F3E4A80010503B /* history.png */; };
+		71210EFC21F3E4AB0010503B /* history@1x.png in Resources */ = {isa = PBXBuildFile; fileRef = 71210EF821F3E4A90010503B /* history@1x.png */; };
+		71210EFD21F3E4AB0010503B /* history@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 71210EF921F3E4A90010503B /* history@3x.png */; };
+		71210EFE21F3E4AB0010503B /* history@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 71210EFA21F3E4AB0010503B /* history@2x.png */; };
+		71210F0021F3E4C50010503B /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71210EFF21F3E4C50010503B /* HistoryViewController.swift */; };
+		71210F0221F3E71E0010503B /* CustomTabBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71210F0121F3E71E0010503B /* CustomTabBarControllerViewController.swift */; };
 		E08A8CA10B6533D258D05028 /* Pods_ChoresTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 517E14F52410A0722604B4CD /* Pods_ChoresTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -56,7 +65,7 @@
 		6C28045AEC5F14899A7BDE40 /* Pods-ChoresUITests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoresUITests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChoresUITests/Pods-ChoresUITests.debug.xcconfig"; sourceTree = "<group>"; };
 		71210EA321F296730010503B /* Chores.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Chores.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		71210EA621F296730010503B /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		71210EA821F296730010503B /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
+		71210EA821F296730010503B /* NameViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NameViewController.swift; sourceTree = "<group>"; };
 		71210EAB21F296730010503B /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		71210EAE21F296730010503B /* Chores.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Chores.xcdatamodel; sourceTree = "<group>"; };
 		71210EB021F296790010503B /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -78,6 +87,15 @@
 		71210EEB21F3B62B0010503B /* Raleway-Bold.ttf */ = {isa = PBXFileReference; lastKnownFileType = file; path = "Raleway-Bold.ttf"; sourceTree = "<group>"; };
 		71210EED21F3C2530010503B /* check.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = check.png; sourceTree = "<group>"; };
 		71210EEF21F3D62B0010503B /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		71210EF121F3E3150010503B /* deletet@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "deletet@2x.png"; sourceTree = "<group>"; };
+		71210EF221F3E3150010503B /* deletet@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "deletet@1x.png"; sourceTree = "<group>"; };
+		71210EF321F3E3150010503B /* deletet@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "deletet@3x.png"; sourceTree = "<group>"; };
+		71210EF721F3E4A80010503B /* history.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = history.png; sourceTree = "<group>"; };
+		71210EF821F3E4A90010503B /* history@1x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "history@1x.png"; sourceTree = "<group>"; };
+		71210EF921F3E4A90010503B /* history@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "history@3x.png"; sourceTree = "<group>"; };
+		71210EFA21F3E4AB0010503B /* history@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "history@2x.png"; sourceTree = "<group>"; };
+		71210EFF21F3E4C50010503B /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
+		71210F0121F3E71E0010503B /* CustomTabBarControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarControllerViewController.swift; sourceTree = "<group>"; };
 		73282BCD895DD8C0C1B51076 /* Pods-ChoresTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoresTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChoresTests/Pods-ChoresTests.debug.xcconfig"; sourceTree = "<group>"; };
 		86F4E44C11D4175589780A97 /* Pods_ChoresUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChoresUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B78242BAF42A1CA6487F3B22 /* Pods-Chores.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chores.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chores/Pods-Chores.debug.xcconfig"; sourceTree = "<group>"; };
@@ -151,13 +169,15 @@
 			children = (
 				71210EA621F296730010503B /* AppDelegate.swift */,
 				71210ED721F2A3080010503B /* LaunchViewController.swift */,
-				71210EA821F296730010503B /* ViewController.swift */,
+				71210EA821F296730010503B /* NameViewController.swift */,
+				71210F0121F3E71E0010503B /* CustomTabBarControllerViewController.swift */,
+				71210EFF21F3E4C50010503B /* HistoryViewController.swift */,
 				71210EE021F3A2A00010503B /* TileViewController.swift */,
 				71210EE221F3A2CC0010503B /* TileView.swift */,
 				71210EDE21F3A1FA0010503B /* LoadingButton.swift */,
 				71210EAA21F296730010503B /* Main.storyboard */,
-				71210EB021F296790010503B /* Assets.xcassets */,
 				71210EB221F296790010503B /* LaunchScreen.storyboard */,
+				71210EB021F296790010503B /* Assets.xcassets */,
 				71210EB521F296790010503B /* Info.plist */,
 				71210EEF21F3D62B0010503B /* GoogleService-Info.plist */,
 				71210EAD21F296730010503B /* Chores.xcdatamodeld */,
@@ -188,10 +208,17 @@
 		71210EDB21F2A4C10010503B /* Images */ = {
 			isa = PBXGroup;
 			children = (
+				71210EF721F3E4A80010503B /* history.png */,
+				71210EF821F3E4A90010503B /* history@1x.png */,
+				71210EFA21F3E4AB0010503B /* history@2x.png */,
+				71210EF921F3E4A90010503B /* history@3x.png */,
+				71210EDC21F2A51B0010503B /* delete.png */,
+				71210EF221F3E3150010503B /* deletet@1x.png */,
+				71210EF121F3E3150010503B /* deletet@2x.png */,
+				71210EF321F3E3150010503B /* deletet@3x.png */,
 				71210EED21F3C2530010503B /* check.png */,
 				71210EE621F3B3810010503B /* notifications.png */,
 				71210EE421F3B3360010503B /* recycle.png */,
-				71210EDC21F2A51B0010503B /* delete.png */,
 			);
 			path = Images;
 			sourceTree = "<group>";
@@ -323,14 +350,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				71210EDD21F2A51B0010503B /* delete.png in Resources */,
+				71210EFD21F3E4AB0010503B /* history@3x.png in Resources */,
 				71210EE521F3B3360010503B /* recycle.png in Resources */,
+				71210EFC21F3E4AB0010503B /* history@1x.png in Resources */,
+				71210EF521F3E3150010503B /* deletet@1x.png in Resources */,
 				71210EF021F3D62C0010503B /* GoogleService-Info.plist in Resources */,
 				71210EEE21F3C2530010503B /* check.png in Resources */,
+				71210EF421F3E3150010503B /* deletet@2x.png in Resources */,
 				71210EB421F296790010503B /* LaunchScreen.storyboard in Resources */,
 				71210EB121F296790010503B /* Assets.xcassets in Resources */,
 				71210EE721F3B3810010503B /* notifications.png in Resources */,
 				71210EAC21F296730010503B /* Main.storyboard in Resources */,
+				71210EFB21F3E4AB0010503B /* history.png in Resources */,
+				71210EFE21F3E4AB0010503B /* history@2x.png in Resources */,
 				71210EEC21F3B62B0010503B /* Raleway-Bold.ttf in Resources */,
+				71210EF621F3E3150010503B /* deletet@3x.png in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -440,11 +474,13 @@
 			files = (
 				71210EAF21F296730010503B /* Chores.xcdatamodeld in Sources */,
 				71210EE321F3A2CC0010503B /* TileView.swift in Sources */,
-				71210EA921F296730010503B /* ViewController.swift in Sources */,
+				71210EA921F296730010503B /* NameViewController.swift in Sources */,
 				71210EE121F3A2A00010503B /* TileViewController.swift in Sources */,
 				71210EDF21F3A1FA0010503B /* LoadingButton.swift in Sources */,
 				71210EA721F296730010503B /* AppDelegate.swift in Sources */,
 				71210ED821F2A3080010503B /* LaunchViewController.swift in Sources */,
+				71210F0221F3E71E0010503B /* CustomTabBarControllerViewController.swift in Sources */,
+				71210F0021F3E4C50010503B /* HistoryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

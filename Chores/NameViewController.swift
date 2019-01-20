@@ -7,13 +7,16 @@
 //
 
 import UIKit
+import Firebase
 
-class ViewController: UIViewController {
-
+class NameViewController: UIViewController {
+    // firebase db refs
+    static let kUsersListPath = "users"
+    let usersReference = Database.database().reference(withPath: kUsersListPath)
+    
     let textField: UITextField = {
         let textField = UITextField()
         textField.translatesAutoresizingMaskIntoConstraints = false
-        textField.autocorrectionType = .no
         textField.textColor = UIColor.white
         textField.backgroundColor = UIColor.clear
         textField.font = UIFont.systemFont(ofSize: 20.0)
@@ -22,6 +25,7 @@ class ViewController: UIViewController {
         textField.text = ""
         textField.tag = 0
         textField.keyboardType = UIKeyboardType.default
+        textField.tintColor = UIColor.white
         // add bottom line
         let view = UIView(frame: CGRect(x: 0, y: 26, width: 0, height: 0))
         view.translatesAutoresizingMaskIntoConstraints = false
@@ -53,6 +57,7 @@ class ViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         addGradientToView(view)
+        hideKeyboardWhenTappedAround()
         // add ui components
         let label = UILabel(frame: CGRect(x: 0, y: 0, width: view.frame.width - 50, height: 30))
         label.translatesAutoresizingMaskIntoConstraints = false
@@ -89,13 +94,35 @@ class ViewController: UIViewController {
         button.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         button.widthAnchor.constraint(equalToConstant: view.frame.width - 50).isActive = true
         button.heightAnchor.constraint(equalToConstant: 50).isActive = true
-        
+        button.addTarget(self, action: #selector(nextButtonPressed(_:)), for: .touchUpInside)
     }
 
 
+    @objc func nextButtonPressed(_ sender: LoadingButton) {
+        guard let nameString = textField.text else { return }
+        if nameString == "" || nameString.count > 14 { return }
+        guard let fcmToken = Messaging.messaging().fcmToken else { return }
+        button.showLoading()
+        usersReference.child(fcmToken).setValue(nameString) { error, ref in
+            if error == nil {
+                self.button.hideLoading()
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "segueToTileFromName", sender: nil)
+                }
+            } else {
+                self.button.hideLoading()
+                return
+            }
+        }
+
+    }
 }
 
-// helper functions
+
+
+
+
+// extension helper functions
 extension UIViewController {
     func addGradientToView(_ view: UIView) {
         let gradient = CAGradientLayer()
@@ -113,6 +140,16 @@ extension UIViewController {
         gradient.startPoint = CGPoint(x: CGFloat(a),y:CGFloat(b))
         
         view.layer.insertSublayer(gradient, at: 0)
+    }
+    
+    func hideKeyboardWhenTappedAround() {
+        let tap: UITapGestureRecognizer = UITapGestureRecognizer(target: self, action: #selector(UIViewController.dismissKeyboard))
+        tap.cancelsTouchesInView = false
+        view.addGestureRecognizer(tap)
+    }
+    
+    @objc func dismissKeyboard() {
+        view.endEditing(true)
     }
 
 }

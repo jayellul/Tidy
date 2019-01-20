@@ -7,12 +7,15 @@
 //
 
 import UIKit
-
+import Firebase
 
 private let garbageImage = #imageLiteral(resourceName: "delete.png")
 
 class LaunchViewController: UIViewController {
-
+    // firebase db refs
+    static let kUsersListPath = "users"
+    let usersReference = Database.database().reference(withPath: kUsersListPath)
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         addGradientToView(view)
@@ -25,6 +28,27 @@ class LaunchViewController: UIViewController {
         imageView.centerXAnchor.constraint(equalTo: view.centerXAnchor).isActive = true
         imageView.centerYAnchor.constraint(equalTo: view.centerYAnchor).isActive = true
         
+        checkFirebase()
+    }
+    
+    func checkFirebase() {
+        guard let fcmToken = Messaging.messaging().fcmToken else { segueToName(); return }
+        usersReference.child(fcmToken).observeSingleEvent(of: .value) { (snapshot) in
+            if snapshot.exists() {
+                DispatchQueue.main.async {
+                    self.performSegue(withIdentifier: "segueToTile", sender: nil)
+                }
+            } else {
+                self.segueToName()
+            }
+        }
+
+    }
+    
+    func segueToName() {
+        DispatchQueue.main.async {
+            self.performSegue(withIdentifier: "segueToName", sender: nil)
+        }
     }
 
 
