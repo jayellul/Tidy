@@ -66,7 +66,7 @@ class TileView: UIView {
         // tile interaction and styling
         isUserInteractionEnabled = true
         layer.borderColor = UIColor.white.cgColor
-        layer.borderWidth = 5
+        layer.borderWidth = 4
         layer.cornerRadius = 10
         
         addSubview(imageView)
@@ -230,12 +230,14 @@ class TileView: UIView {
             garbageReference.child(fcmToken).setValue(timestamp)
             print (timestamp)
         case 2:
+            // remind x to take out garbage
             print (tag)
         case 3:
             // i just took out the recycling
             recyclingReference.child(fcmToken).setValue(timestamp)
             print (timestamp)
         case 4:
+            // remind x to take out recycling
             print (tag)
         default:
             return

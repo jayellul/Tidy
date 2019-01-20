@@ -61,7 +61,14 @@ class TileViewController: UIViewController, CustomTabBarDelegate {
     func setupSubviews() {
         view.addSubview(scrollView)
         scrollView.frame = view.frame
-        scrollView.bottomAnchor.constraint(equalTo: view.bottomAnchor).isActive = true
+        if #available(iOS 11.0, *) {
+            if let window = UIApplication.shared.keyWindow {
+                let topPadding = window.safeAreaInsets.top
+                let bottomPadding = window.safeAreaInsets.bottom
+                scrollView.frame.size.height -= (topPadding + bottomPadding)
+            }
+        }
+        scrollView.bottomAnchor.constraint(equalTo: view.safeAreaLayoutGuide.bottomAnchor).isActive = true
         scrollView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor).isActive = true
         scrollView.leftAnchor.constraint(equalTo: view.leftAnchor).isActive = true
         scrollView.rightAnchor.constraint(equalTo: view.rightAnchor).isActive = true
@@ -89,7 +96,7 @@ class TileViewController: UIViewController, CustomTabBarDelegate {
         scrollView.addSubview(bottomLeftTile)
         bottomLeftTile.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: (scrollView.frame.width / 2) - 15, height: (scrollView.frame.height / 2) - 50)
         bottomLeftTile.leftAnchor.constraint(equalTo: scrollView.leftAnchor, constant: 10).isActive = true
-        bottomLeftTile.topAnchor.constraint(equalTo: scrollView.centerYAnchor, constant: -15).isActive = true
+        bottomLeftTile.topAnchor.constraint(equalTo: scrollView.centerYAnchor, constant: 0).isActive = true
         bottomLeftTile.heightAnchor.constraint(equalToConstant: (scrollView.frame.height / 2) - 50).isActive = true
         bottomLeftTile.widthAnchor.constraint(equalToConstant: (scrollView.frame.width / 2) - 15).isActive = true
         bottomLeftTile.label.text = "I just took out the Recycling"
@@ -99,7 +106,7 @@ class TileViewController: UIViewController, CustomTabBarDelegate {
         scrollView.addSubview(bottomRightTile)
         bottomRightTile.frame = CGRect(x: CGFloat(0), y: CGFloat(0), width: (scrollView.frame.width / 2) - 15, height: (scrollView.frame.height / 2) - 50)
         bottomRightTile.trailingAnchor.constraint(equalTo: scrollView.trailingAnchor, constant: scrollView.frame.width - 10).isActive = true
-        bottomRightTile.topAnchor.constraint(equalTo: scrollView.centerYAnchor, constant: -15).isActive = true
+        bottomRightTile.topAnchor.constraint(equalTo: scrollView.centerYAnchor, constant: 0).isActive = true
         bottomRightTile.heightAnchor.constraint(equalToConstant: (scrollView.frame.height / 2) - 50).isActive = true
         bottomRightTile.widthAnchor.constraint(equalToConstant: (scrollView.frame.width / 2) - 15).isActive = true
         bottomRightTile.label.text = "Loading..."
@@ -119,10 +126,10 @@ class TileViewController: UIViewController, CustomTabBarDelegate {
                     if fcmToken == lastChore.fcmToken {
                         topRightTileString = "It's your turn to take out the Garbage!"
                     } else {
-                        topRightTileString = "Remind " + lastChore.name  + " to take out the Garbage."
+                        topRightTileString = "Remind " + lastChore.name  + " to take out the Garbage"
                     }
                 } else {
-                    topRightTileString = "Remind " + lastChore.name  + " to take out the Garbage."
+                    topRightTileString = "Remind " + lastChore.name  + " to take out the Garbage"
                 }
                 topRightTile.label.text = topRightTileString
             }
@@ -137,10 +144,10 @@ class TileViewController: UIViewController, CustomTabBarDelegate {
                     if fcmToken == lastChore.fcmToken {
                         bottomRightTileString = "It's your turn to take out the Recycling!"
                     } else {
-                        bottomRightTileString = "Remind " + lastChore.name  + " to take out the Recycling."
+                        bottomRightTileString = "Remind " + lastChore.name  + " to take out the Recycling"
                     }
                 } else {
-                    bottomRightTileString = "Remind " + lastChore.name  + " to take out the Recycling."
+                    bottomRightTileString = "Remind " + lastChore.name  + " to take out the Recycling"
                 }
                 bottomRightTile.label.text = bottomRightTileString
             }
