@@ -7,9 +7,11 @@
 //
 
 import UIKit
+import Firebase
 
-class TileViewController: UIViewController {
-
+class TileViewController: UIViewController, CustomTabBarDelegate {
+    
+    
     let scrollView: UIScrollView = {
         let scrollView = UIScrollView()
         scrollView.translatesAutoresizingMaskIntoConstraints = false
@@ -80,7 +82,7 @@ class TileViewController: UIViewController {
         topRightTile.topAnchor.constraint(equalTo: scrollView.topAnchor, constant: 10).isActive = true
         topRightTile.heightAnchor.constraint(equalToConstant: (scrollView.frame.height / 2) - 50).isActive = true
         topRightTile.widthAnchor.constraint(equalToConstant: (scrollView.frame.width / 2) - 15).isActive = true
-        topRightTile.label.text = "Remind Will to take out the Garbage"
+        topRightTile.label.text = "Loading..."
         topRightTile.setupLabel()
         topRightTile.setupImageView()
 
@@ -100,10 +102,50 @@ class TileViewController: UIViewController {
         bottomRightTile.topAnchor.constraint(equalTo: scrollView.centerYAnchor, constant: -15).isActive = true
         bottomRightTile.heightAnchor.constraint(equalToConstant: (scrollView.frame.height / 2) - 50).isActive = true
         bottomRightTile.widthAnchor.constraint(equalToConstant: (scrollView.frame.width / 2) - 15).isActive = true
-        bottomRightTile.label.text = "Remind Will to take out the Recyling"
+        bottomRightTile.label.text = "Loading..."
         bottomRightTile.setupLabel()
         bottomRightTile.setupImageView()
 
+    }
+    
+    // tab bar updated
+    func finishedLoading() {
+        // get the last entries of the arrays and set as the name to remind
+        if var newGarbageChores = (tabBarController as? CustomTabBarController)?.garbageChores {
+            newGarbageChores.sort(by: { $0.time > $1.time})
+            var topRightTileString = ""
+            if let lastChore = newGarbageChores.last {
+                if let fcmToken = Messaging.messaging().fcmToken {
+                    if fcmToken == lastChore.fcmToken {
+                        topRightTileString = "It's your turn to take out the Garbage!"
+                    } else {
+                        topRightTileString = "Remind " + lastChore.name  + " to take out the Garbage."
+                    }
+                } else {
+                    topRightTileString = "Remind " + lastChore.name  + " to take out the Garbage."
+                }
+                topRightTile.label.text = topRightTileString
+            }
+         
+        }
+        
+        if var newRecyclingChores = (tabBarController as? CustomTabBarController)?.recyclingChores {
+            newRecyclingChores.sort(by: { $0.time > $1.time})
+            var bottomRightTileString = ""
+            if let lastChore = newRecyclingChores.last {
+                if let fcmToken = Messaging.messaging().fcmToken {
+                    if fcmToken == lastChore.fcmToken {
+                        bottomRightTileString = "It's your turn to take out the Recycling!"
+                    } else {
+                        bottomRightTileString = "Remind " + lastChore.name  + " to take out the Recycling."
+                    }
+                } else {
+                    bottomRightTileString = "Remind " + lastChore.name  + " to take out the Recycling."
+                }
+                bottomRightTile.label.text = bottomRightTileString
+            }
+        }
+   
     }
     
 

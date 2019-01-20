@@ -63,10 +63,10 @@
             </objects>
             <point key="canvasLocation" x="670" y="1502"/>
         </scene>
-        <!--Custom Tab Bar Controller View Controller-->
+        <!--Custom Tab Bar Controller-->
         <scene sceneID="aIp-G0-NIr">
             <objects>
-                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="QJJ-Lk-Eev" customClass="CustomTabBarControllerViewController" customModule="Chores" customModuleProvider="target" sceneMemberID="viewController">
+                <tabBarController automaticallyAdjustsScrollViewInsets="NO" id="QJJ-Lk-Eev" customClass="CustomTabBarController" customModule="Chores" customModuleProvider="target" sceneMemberID="viewController">
                     <toolbarItems/>
                     <simulatedTabBarMetrics key="simulatedBottomBarMetrics"/>
                     <tabBar key="tabBar" contentMode="scaleToFill" insetsLayoutMarginsFromSafeArea="NO" barStyle="black" id="MmR-xp-W3l">
@@ -108,6 +108,6 @@
         <image name="history.png" width="25" height="25"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="FOO-CB-3l5"/>
+        <segue reference="NQV-0P-Ono"/>
     </inferredMetricsTieBreakers>
 </document>

@@ -35,7 +35,8 @@
 		71210EFD21F3E4AB0010503B /* history@3x.png in Resources */ = {isa = PBXBuildFile; fileRef = 71210EF921F3E4A90010503B /* history@3x.png */; };
 		71210EFE21F3E4AB0010503B /* history@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 71210EFA21F3E4AB0010503B /* history@2x.png */; };
 		71210F0021F3E4C50010503B /* HistoryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71210EFF21F3E4C50010503B /* HistoryViewController.swift */; };
-		71210F0221F3E71E0010503B /* CustomTabBarControllerViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71210F0121F3E71E0010503B /* CustomTabBarControllerViewController.swift */; };
+		71210F0221F3E71E0010503B /* CustomTabBarController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71210F0121F3E71E0010503B /* CustomTabBarController.swift */; };
+		71210F0421F3FFA90010503B /* Chore.swift in Sources */ = {isa = PBXBuildFile; fileRef = 71210F0321F3FFA90010503B /* Chore.swift */; };
 		E08A8CA10B6533D258D05028 /* Pods_ChoresTests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 517E14F52410A0722604B4CD /* Pods_ChoresTests.framework */; };
 /* End PBXBuildFile section */
 
@@ -95,7 +96,9 @@
 		71210EF921F3E4A90010503B /* history@3x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "history@3x.png"; sourceTree = "<group>"; };
 		71210EFA21F3E4AB0010503B /* history@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "history@2x.png"; sourceTree = "<group>"; };
 		71210EFF21F3E4C50010503B /* HistoryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HistoryViewController.swift; sourceTree = "<group>"; };
-		71210F0121F3E71E0010503B /* CustomTabBarControllerViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarControllerViewController.swift; sourceTree = "<group>"; };
+		71210F0121F3E71E0010503B /* CustomTabBarController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomTabBarController.swift; sourceTree = "<group>"; };
+		71210F0321F3FFA90010503B /* Chore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Chore.swift; sourceTree = "<group>"; };
+		71210F0721F4152B0010503B /* Chores.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Chores.entitlements; sourceTree = "<group>"; };
 		73282BCD895DD8C0C1B51076 /* Pods-ChoresTests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-ChoresTests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-ChoresTests/Pods-ChoresTests.debug.xcconfig"; sourceTree = "<group>"; };
 		86F4E44C11D4175589780A97 /* Pods_ChoresUITests.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_ChoresUITests.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		B78242BAF42A1CA6487F3B22 /* Pods-Chores.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Chores.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Chores/Pods-Chores.debug.xcconfig"; sourceTree = "<group>"; };
@@ -167,10 +170,12 @@
 		71210EA521F296730010503B /* Chores */ = {
 			isa = PBXGroup;
 			children = (
+				71210F0721F4152B0010503B /* Chores.entitlements */,
 				71210EA621F296730010503B /* AppDelegate.swift */,
 				71210ED721F2A3080010503B /* LaunchViewController.swift */,
 				71210EA821F296730010503B /* NameViewController.swift */,
-				71210F0121F3E71E0010503B /* CustomTabBarControllerViewController.swift */,
+				71210F0121F3E71E0010503B /* CustomTabBarController.swift */,
+				71210F0321F3FFA90010503B /* Chore.swift */,
 				71210EFF21F3E4C50010503B /* HistoryViewController.swift */,
 				71210EE021F3A2A00010503B /* TileViewController.swift */,
 				71210EE221F3A2CC0010503B /* TileView.swift */,
@@ -313,6 +318,11 @@
 				TargetAttributes = {
 					71210EA221F296730010503B = {
 						CreatedOnToolsVersion = 10.0;
+						SystemCapabilities = {
+							com.apple.Push = {
+								enabled = 1;
+							};
+						};
 					};
 					71210EB921F296790010503B = {
 						CreatedOnToolsVersion = 10.0;
@@ -479,7 +489,8 @@
 				71210EDF21F3A1FA0010503B /* LoadingButton.swift in Sources */,
 				71210EA721F296730010503B /* AppDelegate.swift in Sources */,
 				71210ED821F2A3080010503B /* LaunchViewController.swift in Sources */,
-				71210F0221F3E71E0010503B /* CustomTabBarControllerViewController.swift in Sources */,
+				71210F0421F3FFA90010503B /* Chore.swift in Sources */,
+				71210F0221F3E71E0010503B /* CustomTabBarController.swift in Sources */,
 				71210F0021F3E4C50010503B /* HistoryViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -656,6 +667,7 @@
 			baseConfigurationReference = B78242BAF42A1CA6487F3B22 /* Pods-Chores.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Chores/Chores.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9HR3D6C5WB;
 				INFOPLIST_FILE = Chores/Info.plist;
@@ -675,6 +687,7 @@
 			baseConfigurationReference = 0FD87E201ECD9AA8D046A118 /* Pods-Chores.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_ENTITLEMENTS = Chores/Chores.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = 9HR3D6C5WB;
 				INFOPLIST_FILE = Chores/Info.plist;

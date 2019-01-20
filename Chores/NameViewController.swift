@@ -13,6 +13,10 @@ class NameViewController: UIViewController {
     // firebase db refs
     static let kUsersListPath = "users"
     let usersReference = Database.database().reference(withPath: kUsersListPath)
+    static let kGarbageListPath = "garbage"
+    let garbageReference = Database.database().reference(withPath: kGarbageListPath)
+    static let kRecyclingListPath = "recycling"
+    let recyclingReference = Database.database().reference(withPath: kRecyclingListPath)
     
     let textField: UITextField = {
         let textField = UITextField()
@@ -105,10 +109,17 @@ class NameViewController: UIViewController {
         button.showLoading()
         usersReference.child(fcmToken).setValue(nameString) { error, ref in
             if error == nil {
-                self.button.hideLoading()
-                DispatchQueue.main.async {
-                    self.performSegue(withIdentifier: "segueToTileFromName", sender: nil)
+                let timestamp = Int64(NSDate().timeIntervalSince1970 * 1000)
+                // set token in garbage and recycling reference
+                self.garbageReference.child(fcmToken).setValue(timestamp) { error, ref in
+                    self.recyclingReference.child(fcmToken).setValue(timestamp) { error, ref in
+                        self.button.hideLoading()
+                        DispatchQueue.main.async {
+                            self.performSegue(withIdentifier: "segueToTileFromName", sender: nil)
+                        }
+                    }
                 }
+                
             } else {
                 self.button.hideLoading()
                 return
@@ -175,5 +186,35 @@ extension UIImageView {
         UIGraphicsEndImageContext()
         
         return newImage!
+    }
+}
+
+extension UILabel {
+    // converts a timestamp from firebase into a string
+    func timestampToText (timestamp: Int64) -> String {
+        let currentTime = Int64(NSDate().timeIntervalSince1970)
+        let actualTime = timestamp / 1000
+        let createdTime = currentTime - actualTime
+        // less than a day
+        if (createdTime < 86400) {
+            let date = Date(timeIntervalSince1970: TimeInterval(actualTime))
+            let dateFormatter = DateFormatter()
+            dateFormatter.locale = Locale(identifier: "en_US")
+            dateFormatter.dateStyle = .none
+            dateFormatter.timeStyle = .short
+            dateFormatter.amSymbol = "AM"
+            dateFormatter.pmSymbol = "PM"
+            dateFormatter.dateFormat = "h:mm a"
+            return dateFormatter.string(from: date)
+        } else {
+            // older than a day
+            let date = Date(timeIntervalSince1970: TimeInterval(actualTime))
+            let dateFormatter = DateFormatter()
+            dateFormatter.locale = Locale(identifier: "en_US")
+            dateFormatter.dateStyle = .none
+            dateFormatter.timeStyle = .short
+            dateFormatter.dateFormat = "EEE, MMM d"
+            return dateFormatter.string(from: date)
+        }
     }
 }

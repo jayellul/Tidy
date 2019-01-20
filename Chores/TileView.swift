@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Firebase
 
 private let garbageImage = #imageLiteral(resourceName: "delete.png")
 private let recycleImage = #imageLiteral(resourceName: "recycle.png")
@@ -14,6 +15,11 @@ private let notificationImage = #imageLiteral(resourceName: "notifications.png")
 private let checkImage = #imageLiteral(resourceName: "check.png")
 
 class TileView: UIView {
+    
+    static let kGarbageListPath = "garbage"
+    let garbageReference = Database.database().reference(withPath: kGarbageListPath)
+    static let kRecyclingListPath = "recycling"
+    let recyclingReference = Database.database().reference(withPath: kRecyclingListPath)
     
     let imageView: UIImageView = {
         let imageView = UIImageView()
@@ -128,7 +134,7 @@ class TileView: UIView {
             }) { (completed) in
                 
             }
-            UIView.animate(withDuration: 0.4, delay: 0, options: .curveEaseOut, animations: {
+            UIView.animate(withDuration: 0.3, delay: 0, options: .curveEaseOut, animations: {
                 self.loadingBarWidthConstraint.constant = self.bounds.width
                 self.layoutIfNeeded()
             })
@@ -158,7 +164,7 @@ class TileView: UIView {
         counter += 0.1
         
         // trigger event
-        if counter > 0.4 {
+        if counter > 0.3 {
             timer?.invalidate()
             // enable and disable
             loadingBarWidthConstraint.constant = 0
@@ -208,10 +214,32 @@ class TileView: UIView {
                 greenView.removeFromSuperview()
                 imageView.removeFromSuperview()
                 self.longPressRecognizer.isEnabled = true
-                
+                // do the database action depending on the tile's tag
+                self.performAction()
             }
         })
         
+    }
+    
+    func performAction() {
+        guard let fcmToken = Messaging.messaging().fcmToken else { return }
+        let timestamp = Int64(NSDate().timeIntervalSince1970 * 1000)
+        switch tag {
+        case 1:
+            // i just took out the garbage
+            garbageReference.child(fcmToken).setValue(timestamp)
+            print (timestamp)
+        case 2:
+            print (tag)
+        case 3:
+            // i just took out the recycling
+            recyclingReference.child(fcmToken).setValue(timestamp)
+            print (timestamp)
+        case 4:
+            print (tag)
+        default:
+            return
+        }
     }
     
 
