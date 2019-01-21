@@ -70,11 +70,13 @@ class CustomTabBarController: UITabBarController {
                     })
                 }
                 myGroup.notify(queue: .main) {
+                    garbageChores.sort(by: { $0.time > $1.time})
                     self.garbageChores = garbageChores
                     self.tileViewControllerDelegate?.finishedLoading()
                     self.historyViewControllerDelegate?.finishedLoading()
                 }
             } else {
+                garbageChores.sort(by: { $0.time > $1.time})
                 self.garbageChores = garbageChores
                 self.tileViewControllerDelegate?.finishedLoading()
                 self.historyViewControllerDelegate?.finishedLoading()
@@ -107,11 +109,13 @@ class CustomTabBarController: UITabBarController {
                     })
                 }
                 myGroup.notify(queue: .main) {
+                    recyclingChores.sort(by: { $0.time > $1.time})
                     self.recyclingChores = recyclingChores
                     self.tileViewControllerDelegate?.finishedLoading()
                     self.historyViewControllerDelegate?.finishedLoading()
                 }
             } else {
+                recyclingChores.sort(by: { $0.time > $1.time})
                 self.recyclingChores = recyclingChores
                 self.tileViewControllerDelegate?.finishedLoading()
                 self.historyViewControllerDelegate?.finishedLoading()

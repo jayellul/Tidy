@@ -131,13 +131,16 @@ class TileViewController: UIViewController, CustomTabBarDelegate {
                 } else {
                     topRightTileString = "Remind " + lastChore.name  + " to take out the Garbage"
                 }
+                // update tiles
                 topRightTile.label.text = topRightTileString
+                topRightTile.lastChore = lastChore
             }
          
         }
         
         if var newRecyclingChores = (tabBarController as? CustomTabBarController)?.recyclingChores {
             newRecyclingChores.sort(by: { $0.time > $1.time})
+            print (newRecyclingChores)
             var bottomRightTileString = ""
             if let lastChore = newRecyclingChores.last {
                 if let fcmToken = Messaging.messaging().fcmToken {
@@ -149,7 +152,10 @@ class TileViewController: UIViewController, CustomTabBarDelegate {
                 } else {
                     bottomRightTileString = "Remind " + lastChore.name  + " to take out the Recycling"
                 }
+                // update tiles
                 bottomRightTile.label.text = bottomRightTileString
+                print (lastChore)
+                bottomRightTile.lastChore = lastChore
             }
         }
    

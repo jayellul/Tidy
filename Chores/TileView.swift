@@ -21,6 +21,10 @@ class TileView: UIView {
     static let kRecyclingListPath = "recycling"
     let recyclingReference = Database.database().reference(withPath: kRecyclingListPath)
     
+    lazy var functions = Functions.functions()
+
+    var lastChore: Chore? = nil
+    
     let imageView: UIImageView = {
         let imageView = UIImageView()
         imageView.translatesAutoresizingMaskIntoConstraints = false
@@ -42,6 +46,7 @@ class TileView: UIView {
         view.translatesAutoresizingMaskIntoConstraints = false
         view.backgroundColor = UIColor.white
         view.layer.masksToBounds = true
+        view.layer.cornerRadius = 0
         return view
     }()
     
@@ -66,8 +71,8 @@ class TileView: UIView {
         // tile interaction and styling
         isUserInteractionEnabled = true
         layer.borderColor = UIColor.white.cgColor
-        layer.borderWidth = 4
-        layer.cornerRadius = 10
+        layer.borderWidth = 1.5
+        layer.cornerRadius = 15
         
         addSubview(imageView)
         imageView.centerYAnchor.constraint(equalTo: centerYAnchor, constant: -50).isActive = true
@@ -105,19 +110,20 @@ class TileView: UIView {
         label.centerYAnchor.constraint(equalTo: centerYAnchor, constant: 45).isActive = true
         label.widthAnchor.constraint(equalToConstant: frame.width - 20).isActive = true
         label.heightAnchor.constraint(equalToConstant: (frame.height / 2) - 20).isActive = true
-        // bottom View for style
-       /* let bottomView = UIView()
-        bottomView.translatesAutoresizingMaskIntoConstraints = true
-        bottomView.backgroundColor = UIColor.white
-        bottomView.layer.masksToBounds = true
-        addSubview(bottomView)
-        bottomView.frame = CGRect(x: 0, y: frame.height - 10, width: frame.width, height: 10)*/
         // add loading bar
         addSubview(loadingBar)
         loadingBar.topAnchor.constraint(equalTo: topAnchor, constant: frame.height - 45).isActive = true
         loadingBar.leftAnchor.constraint(equalTo: leftAnchor).isActive = true
         loadingBarWidthConstraint.isActive = true
         loadingBar.heightAnchor.constraint(equalToConstant: 45).isActive = true
+        loadingBar.frame = CGRect(x: 0, y: frame.height - 45, width: frame.width, height: 45)
+        loadingBar.bounds = loadingBar.frame
+        let rectShape = CAShapeLayer()
+        rectShape.bounds = loadingBar.frame
+        rectShape.position = loadingBar.center
+        rectShape.path = UIBezierPath(roundedRect: loadingBar.frame, byRoundingCorners: [.bottomLeft , .bottomRight], cornerRadii: CGSize(width: 15, height: 15)).cgPath
+        loadingBar.layer.mask = rectShape
+        bounds = frame
     }
     
     fileprivate var timer: Timer?
@@ -128,7 +134,7 @@ class TileView: UIView {
         if sender.state == .began {
             print ("tapped")
             timer = Timer.scheduledTimer(timeInterval: 0.1, target: self, selector: (#selector(updateTimer(_:))), userInfo: nil, repeats: true)
-            let smaller = CGAffineTransform(scaleX: 0.92, y: 0.92)
+            let smaller = CGAffineTransform(scaleX: 0.90, y: 0.90)
             UIView.animate(withDuration: 0.15, delay: 0.0, options: .curveEaseOut, animations: {
                 self.transform = smaller
             }) { (completed) in
@@ -172,6 +178,8 @@ class TileView: UIView {
             longPressRecognizer.isEnabled = false
             print ("success")
             animateSuccess()
+            // do the database action depending on the tile's tag
+            performAction()
         }
     }
     
@@ -214,8 +222,6 @@ class TileView: UIView {
                 greenView.removeFromSuperview()
                 imageView.removeFromSuperview()
                 self.longPressRecognizer.isEnabled = true
-                // do the database action depending on the tile's tag
-                self.performAction()
             }
         })
         
@@ -228,17 +234,61 @@ class TileView: UIView {
         case 1:
             // i just took out the garbage
             garbageReference.child(fcmToken).setValue(timestamp)
-            print (timestamp)
+            // make http call
+            functions.httpsCallable("tookOutGarbage").call(["id": fcmToken]) { (result, error) in
+                if let error = error as NSError? {
+                    if error.domain == FunctionsErrorDomain {
+                        let message = error.localizedDescription
+                        print (message)
+                    }
+                } else {
+                    print ("functions success")
+                }
+            }
         case 2:
             // remind x to take out garbage
-            print (tag)
+            if let lastChore = self.lastChore {
+                // make http call
+                functions.httpsCallable("remindGarbage").call(["id": fcmToken, "sendTo": lastChore.fcmToken]) { (result, error) in
+                    if let error = error as NSError? {
+                        if error.domain == FunctionsErrorDomain {
+                            let message = error.localizedDescription
+                            print (message)
+                        }
+                    } else {
+                        print ("functions success")
+                    }
+                }
+            }
         case 3:
             // i just took out the recycling
             recyclingReference.child(fcmToken).setValue(timestamp)
-            print (timestamp)
+            // make http call
+            functions.httpsCallable("tookOutRecycling").call(["id": fcmToken]) { (result, error) in
+                if let error = error as NSError? {
+                    if error.domain == FunctionsErrorDomain {
+                        let message = error.localizedDescription
+                        print (message)
+                    }
+                } else {
+                    print ("functions success")
+                }
+            }
         case 4:
             // remind x to take out recycling
-            print (tag)
+            if let lastChore = self.lastChore {
+                // make http call
+                functions.httpsCallable("remindRecycling").call(["id": fcmToken, "sendTo": lastChore.fcmToken]) { (result, error) in
+                    if let error = error as NSError? {
+                        if error.domain == FunctionsErrorDomain {
+                            let message = error.localizedDescription
+                            print (message)
+                        }
+                    } else {
+                        print ("functions success")
+                    }
+                }
+            }
         default:
             return
         }
