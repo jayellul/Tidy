@@ -140,7 +140,6 @@ class TileViewController: UIViewController, CustomTabBarDelegate {
         
         if var newRecyclingChores = (tabBarController as? CustomTabBarController)?.recyclingChores {
             newRecyclingChores.sort(by: { $0.time > $1.time})
-            print (newRecyclingChores)
             var bottomRightTileString = ""
             if let lastChore = newRecyclingChores.last {
                 if let fcmToken = Messaging.messaging().fcmToken {
@@ -154,7 +153,6 @@ class TileViewController: UIViewController, CustomTabBarDelegate {
                 }
                 // update tiles
                 bottomRightTile.label.text = bottomRightTileString
-                print (lastChore)
                 bottomRightTile.lastChore = lastChore
             }
         }

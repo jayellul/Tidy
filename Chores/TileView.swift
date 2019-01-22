@@ -289,6 +289,7 @@ class TileView: UIView {
                     }
                 }
             }
+            
         default:
             return
         }

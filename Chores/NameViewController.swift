@@ -138,7 +138,6 @@ extension UIViewController {
     func addGradientToView(_ view: UIView) {
         let gradient = CAGradientLayer()
         gradient.colors = [UIColor(red:0.16, green:0.24, blue:0.53, alpha:1.0).cgColor, UIColor(red:0.27, green:0.64, blue:0.28, alpha:1.0).cgColor]
-        //gradient.colors = [UIColor(red:1.00, green:0.42, blue:0.00, alpha:1.0).cgColor, UIColor(red:0.93, green:
         gradient.frame = view.bounds
         let angle: Double = 146
         let x: Double! = angle / 360.0
